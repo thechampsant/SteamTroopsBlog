@@ -1,0 +1,73 @@
+<nav class="h-12 w-full rounded-lg flex justify-end">
+    <div class="flex h-12">
+        <a href="/"
+        class="h-full w-24 overflow-hidden 
+        hover:bg-sky-300
+        hover:text-black
+        text-indigo-50
+        font-semibold
+       
+        tracking-widest
+        text-sm
+        flex
+        items-center
+        justify-center
+        duration-300
+        ">Home</a>
+        <% if(loggedIn){ %>
+        <a href="/post/create"
+        class="h-full w-24 overflow-hidden 
+        hover:bg-sky-300
+        hover:text-black
+        text-indigo-50
+        
+        tracking-widest
+        text-sm
+        font-semibold
+        flex
+        items-center
+        justify-center
+        duration-300
+        "
+        >Create</a>
+        <a class="bg-sky-500 h-full w-24 overflow-hidden 
+        hover:bg-sky-300
+        text-black
+        font-mono
+        tracking-widest
+        text-sm
+        font-semibold
+        flex
+        items-center
+        justify-center
+        duration-300
+        shadow-lg
+        "
+        href="/user/logout"
+        >
+            Logout
+        </a>
+        <% } %>
+        <% if(!loggedIn){ %>
+            <a class="bg-sky-500 h-full w-24 overflow-hidden 
+            hover:bg-sky-300
+            text-black
+            font-mono
+            tracking-widest
+            text-sm
+            font-semibold
+            flex
+            items-center
+            justify-center
+            duration-300
+            shadow-lg
+            "
+            href="/loginUser"
+            >
+                Login
+            </a>
+            <% } %>
+        
+    </div>
+   
+</nav>

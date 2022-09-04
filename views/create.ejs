@@ -1,0 +1,119 @@
+<html lang="en">
+<head>
+    <%- include('layouts/header'); -%>
+</head>
+<body>
+    <div class="h-fit bg-indigo-800 p-6 flex flex-col space-y-8 box-border">
+        <%- include('layouts/navbar'); -%>
+        <div class="flex-1 rounded-lg flex justify-center items-center p-10" >
+            <div class="p-12 md:p-16 bg-sky-900 rounded-lg m-4 shadow-lg space-y-4">
+                <% 
+                <!-- console.log(errors) -->
+                    if(errors){%>
+                        <div class="text-red-400 border border-red-600 rounded-lg p-4">
+                        <% for(let i = 0 ; i < errors.length ; ++i)
+                        {
+                        %>
+                                <p><%=errors[i].msg%> *</p>
+                        <% } %>
+                    </div>
+                <% } %>
+                <!-- form -->
+                <form id="createForm" action="/posts/store" class="flex flex-col space-y-6" method="post" enctype="multipart/form-data">
+                    <div class="flex flex-col space-y-2">
+                        <label class="text-sky-300 text-sm">Experiment Name</label>
+                        <input type="text" class="px-6 py-3 bg-sky-500 rounded-lg focus:bg-sky-300 focus:outline outline-black" id="title" name="title">
+                    </div>
+                    <div class="flex flex-col space-y-2">
+                        <label for="" class="text-sky-300 text-sm">Descripton</label>
+                        <textarea id="description" name="description" rows="1" cols="2" class="px-6 focus:bg-sky-300 py-3 bg-sky-500 rounded-lg text-left focus:outline outline-black"></textarea>
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <label for=""class="text-sky-300 text-sm">Choose difficulty Level</label>
+                        <input id="difficultylevel" name="difficultylevel" type="range" min="1" max="5" value="1"
+                        class="px-6 py-3 bg-sky-500 rounded-lg focus:bg-sky-300">
+                        <p id="value" class="text-sky-300 text-sm"></p>
+                        <script>
+                            let slider = document.getElementById("difficultylevel");
+                            let output = document.getElementById("value")
+                            output.innerHTML = slider.value;
+                            slider.oninput = () => {
+                                output.innerHTML = slider.value
+                            }
+                        </script>
+                    </div>
+                    <div class="flex flex-col space-y-2">
+                        <label for="" class="text-sky-300 text-sm tracking-widest">Subject :</label>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class="flex items-center space-x-2 ">
+                                <label for="" class="text-sm text-sky-300">Physics</label>
+                                <input type="radio" name="subject" id="subject" value="Physics">
+                            </div>
+                            <div class="flex items-center space-x-2">
+                                <label for="" class="text-sm text-sky-300">Chemistry</label>
+                                <input type="radio" name="subject" id="subject" value="Chemistry">
+                            </div>
+                            <div class="flex items-center space-x-2">
+                                <label for="" class="text-sm text-sky-300">Biology</label>
+                                <input type="radio" name="subject" id="subject" value="Biology">
+                            </div>
+                            <div class="flex items-center space-x-2">
+                                <label for="" class="text-sm text-sky-300">General Science</label>
+                                <input type="radio" name="subject" id="subject" value="General Science">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex flex-col space-y-2">
+                        <label for="" class="text-sm text-sky-300">Upload Main Image :</label>
+                        <input type="file" class="text-sm" id="mainimage" name="mainimage">
+                    </div>
+                   <div class="flex flex-col space-y-2">
+                        <label for="" class="text-sm text-sky-300">Material Required :</label>
+                        <textarea id="material" name="material" rows="1" cols="2"class="px-6 focus:bg-sky-300 focus:outline focus:outline-black py-3 bg-sky-500 rounded-lg text-left"></textarea>
+                    </div>
+                    <div class="flex flex-col space-y-2">
+                        <label for="" class="text-sm text-sky-300">Safety Precautions :</label>
+                        <textarea id="safetyPrecautions" name="safetyPrecautions" rows="1" cols="2"class="px-6 focus:bg-sky-300 focus:outline focus:outline-black py-3 bg-sky-500 rounded-lg text-left"></textarea>
+                    </div>
+                    <div class="flex flex-col space-y-4">
+                        <label for="" class="text-sm text-sky-300">Steps by step instructions :</label>
+                        <div id="instructions" class="flex flex-col space-y-4">
+                            <div class="flex flex-col space-y-2">
+                                <span>Step No. 1</span>
+                                <label class="text-sm text-sky-300">Upload step Image :</label>
+                                <input type="file" class="text-sm" id="image" name="image"/>
+                                <label class="text-sm text-sky-300">Step Description :</label>
+                                <textarea id="stepDescription" name="stepDescription" rows="1" cols="2"class="px-6 focus:bg-sky-300 focus:outline focus:outline-black py-3 bg-sky-500 rounded-lg text-left"></textarea>
+                            </div>
+                        </div>
+                        <button type="button" onclick="addElement()"  class="p-4 bg-sky-500 shadow-lg hover:bg-sky-300 
+                        hover:tracking-widest
+                        duration-300">Add Next Step</button>
+                        <script>
+                            let inst = []
+                            const addElement = () =>{
+                                const div = document.createElement('div');
+                                inst.push(div)
+                                div.className = 'flex flex-col space-y-2';
+                                div.innerHTML = `<span>Step No. ${inst.length + 1}</span>
+                                <label class="text-sm text-sky-300">Upload step Image :</label>
+                                <input type="file" class="text-sm" id="image" name="image"/>
+                                <label class="text-sm text-sky-300">Step Description :</label>
+                                <textarea id="stepDescription" name="stepDescription" rows="1" cols="2"class="px-6 focus:bg-sky-300 focus:outline focus:outline-black py-3 bg-sky-500 rounded-lg text-left"></textarea>
+                                `
+                                console.log(inst.length);
+                                document.getElementById('instructions').append(div);
+                            }
+                        </script>
+                    </div>
+                    <button type="submit" class="p-4 bg-sky-500 shadow-lg 
+                    hover:bg-sky-300 
+                    hover:tracking-widest
+                    duration-300
+                    ">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

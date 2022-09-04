@@ -1,0 +1,36 @@
+<html lang="en">
+    <%- include('layouts/header'); -%>
+<body>
+    <div class="min-h-screen w-full bg-indigo-800 p-6">
+        <%- include('layouts/navbar'); -%>
+        <div class="flex justify-center">
+            <div class="
+            md:grid md:grid-cols-4 md:gap-8 md:space-y-0 md:content-between
+            flex flex-col justify-center items-center space-y-3 pt-12">
+                <% for(var i = 0; i < posts.length; ++i){%>
+                <a class="relative group bg-sky-700 rounded-xl cursor-pointer w-56 h-56" href="/post/<%=posts[i]._id%>">
+                    <img src="../public/<%=posts[i].mainImage%>"  alt="mainImage" class="rounded-xl w-56 h-56
+                    group-hover:opacity-20
+                    duration-300
+                    object-cover
+                    ">
+                    <div class="absolute opacity-0 
+                    group-hover:opacity-100 rounded-xl w-56
+                    top-0
+                    left-0
+                    h-56
+                    flex justify-center items-center
+                    flex-col
+                    p-4
+                    space-y-3
+                    ">
+                        <h1 class="tracking-widest font-mono text-white font-bold text-center"><%=posts[i].title%></h1>
+                        <h2 class="tracking-wide font-mono text-sm text-white text-center text-ellipsis overflow-hidden"><%=posts[i].description%></h2>
+                    </div>
+                </a>
+                <%}%>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

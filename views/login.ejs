@@ -1,0 +1,23 @@
+<html lang="en">
+    <%- include('layouts/header'); -%>
+<body>
+    <div class="h-screen bg-indigo-800 p-6 flex flex-col space-y-4">
+        <%- include('layouts/navbar'); -%>
+        <!-- container -->
+        <div class="flex-1 rounded-lg flex justify-center items-center" >
+            <!-- login form -->
+            <div class="p-4 rounded-lg">
+                <form action="/user/login" method="post" class="flex flex-col space-y-4">
+                    <input type="text" id="username" name="username" placeholder="Username" class="placeholder-black px-6 py-3 bg-sky-500">
+                    <input type="text" id="password" name="password" placeholder="Password" class="placeholder-black px-6 py-3 bg-sky-500">
+                    <button type="submit" class="px-6 py-3 bg-sky-400 
+                    text-sm tracking-widest
+                    rounded-lg
+                    hover:bg-white
+                    ">Login</button>
+                </form>
+            </div>
+        </div>
+    </div> 
+</body>
+</html>

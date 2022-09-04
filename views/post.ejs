@@ -1,0 +1,46 @@
+<html lang="en">
+    <%- include('layouts/header'); -%>
+<body>
+    <div class="min-h-screen w-full bg-indigo-800 p-6">
+        <%- include('layouts/navbar'); -%>
+        <div class="flex flex-col m-6 bg-teal-700 rounded-xl space-y-3">
+            <div class="flex justify-center bg-teal-600 rounded-tl-xl rounded-tr-xl">
+                <img src="../public/<%=post.mainImage%>" alt="mainImage" class="h-52 object-contain md:h-96">
+            </div>
+            <div class="flex flex-col p-6 space-y-6">
+                <h1 class="text-white text-xl uppercase"><%=post.title%></h1>
+                <div class="flex justify-between">
+                    <%=post.description%>
+                    <div class="flex text-orange-300">
+                        Level: <%=post.difficultylevel%>
+                    </div>
+                </div>
+                <h3 class="text-orange-300"><%=post.subject%></h3>
+                <div class="flex flex-col">
+                    Material Required:
+                    <div>
+                        <%=post.material%>
+                    </div>
+                </div>
+                <div class="flex flex-col">
+                    Safety Precautions:
+                    <div>
+                        <%=post.safetyPrecautions%>
+                    </div>
+                </div>
+                <div class="flex flex-col">
+                    Step by Step instructions:
+                    <% for(var i = 0; i < post.steps.length; ++i){%>
+                        <div class="flex flex-col">
+                            Step no. <%=i+1%>
+                            <img src="../public/<%=post.steps[i].sImage%>" alt="" class="h-52 object-contain md:h-96">
+                            <p><%=post.steps[i].sDescription%></p>
+                        </div>
+                    <%}%>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>
